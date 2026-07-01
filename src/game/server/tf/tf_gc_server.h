@@ -534,6 +534,9 @@ private:
 	// match.
 	void AcceptGCReservation( CSteamID steamID, ConstTFLobbyPlayer memberData, bool bIsLateJoin, int nEntindex, bool bActive );
 
+	// Retrieves the Steam HTTP API interface depending on the current execution context. 
+	ISteamHTTP* CTFGCServerSystem::GetSteamHTTPInterface();
+
 	// Rolling Matches (private)
 	//
 	// If we requested a new match for our existing lobby. We don't actually launch the new match for this timer, but
