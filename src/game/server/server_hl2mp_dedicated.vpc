@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------
-//	SERVER_HL2MP.VPC
+//	SERVER_HL2MP_DEDICATED.VPC
 //
 //	Project Script
 //-----------------------------------------------------------------------------
@@ -8,9 +8,10 @@ $Macro SRCDIR		"..\.."
 $Macro GAMENAME 	"hl2mp" [!$SOURCESDK]
 $Macro GAMENAME 	"mod_hl2mp" [$SOURCESDK]
 
-$Include "$SRCDIR\game\server\server_base.vpc"
+$Include "$SRCDIR\game\server\server_dedicated_base.vpc"
 $Include "$SRCDIR\game\server\server_hl2mp_shared.vpc"
 
-$Project "Server (HL2MP)"
+
+$Project "Dedicated Server (HL2MP)"
 {
 }

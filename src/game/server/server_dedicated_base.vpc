@@ -1,0 +1,19 @@
+//-----------------------------------------------------------------------------
+//	SERVER_DEDICATED_BASE.VPC
+//
+//	Project Base Script
+//-----------------------------------------------------------------------------
+
+$Macro DLLCONTEXT "dedicated"
+$Include "$SRCDIR\game\server\server_base_shared.vpc"
+
+$Configuration
+{
+	$Compiler
+	{
+		$AdditionalIncludeDirectories	"$BASE;.\;$SRCDIR\game\shared;$SRCDIR\utils\common;$SRCDIR\game\shared\econ;$SRCDIR\game\server\NextBot"
+		$PreprocessorDefinitions		"$BASE;DEDICATED"
+	}
+}
+
+
