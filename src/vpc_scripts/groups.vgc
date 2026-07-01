@@ -47,6 +47,7 @@ $Group "everything"
 	"qc_eyes"
 	"raytrace"
 	"server"
+	"dedicated_server"
 	"serverplugin_empty"
 	"tgadiff"
 	"tier1"
@@ -70,7 +71,7 @@ $Group "everything"
 $Group "dedicated"
 {
 	"mathlib"
-	"server"
+	"dedicated_server"
 	"tier1"
 }
 
