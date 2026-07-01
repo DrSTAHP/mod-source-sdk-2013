@@ -11,8 +11,6 @@ $Macro GAMENAME 	"mod_tf" [$SOURCESDK]
 $Include "$SRCDIR\game\server\server_dedicated_base.vpc"
 $Include "$SRCDIR\game\server\server_tf_shared.vpc"
 
-$Macro OUTBINDIR "$SRCDIR\..\game\$GAMENAME\bin\dedicated"
-
 $Project "Dedicated Server (TF)"
 {
 }
