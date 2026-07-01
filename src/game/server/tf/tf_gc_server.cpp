@@ -3788,15 +3788,6 @@ void CTFGCServerSystem::AcceptGCReservation( CSteamID steamID, ConstTFLobbyPlaye
 }
 
 // **************************************************************************************************
-ISteamHTTP* CTFGCServerSystem::GetSteamHTTPInterface()
-{
-	if (!engine)
-		return nullptr;
-
-	return (engine->IsDedicatedServer()) ? SteamGameServerHTTP() : SteamHTTP();
-}
-
-// **************************************************************************************************
 void CTFGCServerSystem::AbortInvalidMatchState()
 {
 	// TODO ROLLING MATCHES: SteamAPI_SetMiniDumpComment / SteamAPI_WriteMiniDump
@@ -4102,7 +4093,7 @@ void CTFGCServerSystem::WebapiEquipmentThinkRequest( CSteamID steamID, WebapiEqu
 
 		if ( state.m_hEquipmentRequest != INVALID_HTTPREQUEST_HANDLE )
 		{
-			ISteamHTTP* pSteamHTTPInterface = GetSteamHTTPInterface();
+			ISteamHTTP* pSteamHTTPInterface = GET_STEAM_HTTP_INTERFACE();
 			if (pSteamHTTPInterface)
 				pSteamHTTPInterface->ReleaseHTTPRequest( state.m_hEquipmentRequest );
 			state.m_hEquipmentRequest = INVALID_HTTPREQUEST_HANDLE;
@@ -4128,7 +4119,7 @@ void CTFGCServerSystem::WebapiEquipmentThinkRequest( CSteamID steamID, WebapiEqu
 		Assert( state.m_pKVCurrentRequest != nullptr );
 		KeyValues* pKV = state.m_pKVCurrentRequest;
 
-		ISteamHTTP* pSteamHTTPInterface = GetSteamHTTPInterface();
+		ISteamHTTP* pSteamHTTPInterface = GET_STEAM_HTTP_INTERFACE();
 		if (!pSteamHTTPInterface)
 			return;
 
@@ -4241,7 +4232,7 @@ void CTFGCServerSystem::OnWebapiEquipmentReceived( CSteamID steamID, HTTPRequest
 	state.Backoff();
 	state.m_eState = kWebapiEquipmentState_RequestInventory;
 
-	ISteamHTTP* pSteamHTTPInterface = GetSteamHTTPInterface();
+	ISteamHTTP* pSteamHTTPInterface = GET_STEAM_HTTP_INTERFACE();
 	if (!pSteamHTTPInterface)
 		return;
 

@@ -150,6 +150,13 @@ STEAM_DEFINE_USER_INTERFACE_ACCESSOR( ISteamHTTP *, SteamHTTP, STEAMHTTP_INTERFA
 inline ISteamHTTP *SteamGameServerHTTP();
 STEAM_DEFINE_GAMESERVER_INTERFACE_ACCESSOR( ISteamHTTP *, SteamGameServerHTTP, STEAMHTTP_INTERFACE_VERSION );
 
+// Retrieves the Steam HTTP API interface depending on the current execution context. 
+#ifdef DEDICATED
+#define GET_STEAM_HTTP_INTERFACE() SteamGameServerHTTP()
+#else
+#define GET_STEAM_HTTP_INTERFACE() SteamHTTP()
+#endif
+
 // callbacks
 #if defined( VALVE_CALLBACK_PACK_SMALL )
 #pragma pack( push, 4 )
