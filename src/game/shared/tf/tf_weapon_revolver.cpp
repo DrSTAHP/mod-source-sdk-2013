@@ -104,7 +104,8 @@ bool CTFRevolver::CanFireCriticalShot( bool bIsHeadshot, CBaseEntity *pTarget /*
 		return true;
 
 	// Magic.
-	if ( pTarget && ( pPlayer->GetAbsOrigin() - pTarget->GetAbsOrigin() ).Length2DSqr() > Square( 1200.f ) )
+	// The Ambassador can now headshot from any range. A-hyuck!
+	if ( pTarget && ( ( pPlayer->GetAbsOrigin() - pTarget->GetAbsOrigin() ).Length2DSqr() > Square( 1200.f ) && !CanHeadshot() ) )
 		return false;
 
 	// can only fire a crit shot if this is a headshot, unless we're critboosted
