@@ -25,11 +25,7 @@ void CServerGameClients::GetPlayerLimits( int& minplayers, int& maxplayers, int 
 	minplayers = 2;
 #endif
 #ifdef PLATFORM_64BITS
-#ifdef INTERLOPER_DLL
-	maxplayers = (/* Check (coming soon) Interloper API if we are playing with "somebody"... */ 1) ? MAX_PLAYERS : 1;
-#else
 	maxplayers = MAX_PLAYERS;
-#endif
 #else
 	if ( CommandLine()->HasParm("-unrestricted_maxplayers") )
 	{
@@ -45,6 +41,7 @@ void CServerGameClients::GetPlayerLimits( int& minplayers, int& maxplayers, int 
 		maxplayers = 33;
 #endif
 #ifdef INTERLOPER_DLL
+	maxplayers = (/* Check (coming soon) Interloper API if we are playing with "somebody"... */ 1) ? MAX_PLAYERS : 1;
 	defaultMaxPlayers = 1;
 #else
 	defaultMaxPlayers = 16; // misyl: Was 2... but why would the default be 2?! Is there some very intimate HL2DM going on?
