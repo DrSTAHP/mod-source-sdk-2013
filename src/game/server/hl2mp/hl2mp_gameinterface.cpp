@@ -19,9 +19,17 @@
 
 void CServerGameClients::GetPlayerLimits( int& minplayers, int& maxplayers, int &defaultMaxPlayers ) const
 {
+#ifdef INTERLOPER_DLL
+	minplayers = 1;
+#else
 	minplayers = 2;
+#endif
 #ifdef PLATFORM_64BITS
+#ifdef INTERLOPER_DLL
+	maxplayers = (/* Check (coming soon) Interloper API if we are playing with "somebody"... */ 1) ? MAX_PLAYERS : 1;
+#else
 	maxplayers = MAX_PLAYERS;
+#endif
 #else
 	if ( CommandLine()->HasParm("-unrestricted_maxplayers") )
 	{
@@ -36,7 +44,11 @@ void CServerGameClients::GetPlayerLimits( int& minplayers, int& maxplayers, int 
 	else
 		maxplayers = 33;
 #endif
+#ifdef INTERLOPER_DLL
+	defaultMaxPlayers = 1;
+#else
 	defaultMaxPlayers = 16; // misyl: Was 2... but why would the default be 2?! Is there some very intimate HL2DM going on?
+#endif
 }
 
 // -------------------------------------------------------------------------------------------- //
@@ -45,5 +57,12 @@ void CServerGameClients::GetPlayerLimits( int& minplayers, int& maxplayers, int 
 
 void CServerGameDLL::LevelInit_ParseAllEntities( const char *pMapEntities )
 {
+#ifdef INTERLOPER_DLL
+	ConVar* cl_localnetworkbackdoor = cvar->FindVar( "cl_localnetworkbackdoor" );
+	if ( cl_localnetworkbackdoor )
+	{
+		cl_localnetworkbackdoor->SetValue( (gpGlobals->maxEntities) == 1 ? "0" : "1" );
+	}
+#endif
 }
 
