@@ -1,0 +1,24 @@
+//-----------------------------------------------------------------------------
+//	SERVER_INTERLOPER.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro SRCDIR		"..\.."
+$Macro GAMENAME 	"anhl2m" [!$SOURCESDK]
+$Macro GAMENAME 	"anhl2m" [$SOURCESDK]
+
+$Include "$SRCDIR\game\server\server_base.vpc"
+$Include "$SRCDIR\game\server\server_hl2mp_shared.vpc"
+
+$Configuration
+{
+	$Compiler
+	{
+		$PreprocessorDefinitions		"$BASE;MOD_INTERLOPER;INTERLOPER_DLL"
+	}
+}
+
+$Project "Server (Interloper)"
+{
+}
