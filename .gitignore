@@ -505,3 +505,15 @@ FodyWeavers.xsd
 
 # Game executables
 /game/*.exe
+
+# Large assets
+*.mp3
+*.wav 
+*.vtf
+*.vvd 
+*.bsp
+*.nav
+*.ain  
+*.mdl
+*.vtx
+*.vcd
