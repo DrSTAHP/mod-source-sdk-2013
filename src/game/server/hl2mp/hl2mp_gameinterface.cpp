@@ -17,6 +17,35 @@
 // Mod-specific CServerGameClients implementation.
 // -------------------------------------------------------------------------------------------- //
 
+#if defined ( INTERLOPER_DLL ) && defined ( DEBUG ) 
+static void SvIntrMaxPlayersOverrideListen(IConVar* var, const char* pOldValue, float flOldValue)
+{
+	if (!var)
+		return;
+
+	ConVar* pVarDef = cvar->FindVar(var->GetName());
+	if ( !pVarDef )
+		return;
+
+	bool bIsActive = pVarDef->GetBool();
+	bool bPrevious = static_cast<bool>(V_atoi(pOldValue));
+
+	// Revert the default configuration for Interloper
+	if (!bIsActive && bPrevious && engine)
+	{
+		const int iNewMaxPlayers = (/* TODO: Check (coming soon) Interloper API if we are playing with "somebody"... */ 1) ? 1 : MAX_PLAYERS;
+		
+		char szCommand[32];
+		sprintf_s(szCommand, sizeof(szCommand), "maxplayers %i\n", iNewMaxPlayers);
+		
+		engine->ServerCommand(szCommand);
+		engine->ServerExecute();
+	}
+}
+
+ConVar sv_intr_maxplayers_override("sv_intr_maxplayers_override", "0", FCVAR_DEVELOPMENTONLY | FCVAR_GAMEDLL | FCVAR_NOT_CONNECTED | FCVAR_PROTECTED, "Bypass the Interloper API checks for foreign presence.", &SvIntrMaxPlayersOverrideListen);
+#endif
+
 void CServerGameClients::GetPlayerLimits( int& minplayers, int& maxplayers, int &defaultMaxPlayers ) const
 {
 #ifdef INTERLOPER_DLL
@@ -41,8 +70,14 @@ void CServerGameClients::GetPlayerLimits( int& minplayers, int& maxplayers, int 
 		maxplayers = 33;
 #endif
 #ifdef INTERLOPER_DLL
-	maxplayers = (/* Check (coming soon) Interloper API if we are playing with "somebody"... */ 1) ? 1 : MAX_PLAYERS;
-	defaultMaxPlayers = 1;
+#ifdef DEBUG
+	bool bActiveMaxPlayersOverride = sv_intr_maxplayers_override.GetBool();
+	if ( !bActiveMaxPlayersOverride ) // Default otherwise.
+#endif
+	{
+		maxplayers = (/* TODO: Check (coming soon) Interloper API if we are playing with "somebody"... */ 1) ? 1 : MAX_PLAYERS; // TODO: Will be a method in Interloper API. Hopefully...
+		defaultMaxPlayers = 1;
+	}
 #else
 	defaultMaxPlayers = 16; // misyl: Was 2... but why would the default be 2?! Is there some very intimate HL2DM going on?
 #endif
