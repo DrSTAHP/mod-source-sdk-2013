@@ -7182,8 +7182,8 @@ void CTFPlayerShared::OnAddFeignDeath( void )
 
 	// STAGING_SPY
 	// Add a speed boost while feigned and afterburn immunity while running away
-	// AddCond( TF_COND_SPEED_BOOST, tf_feign_death_speed_duration.GetFloat() );
-	// AddCond( TF_COND_AFTERBURN_IMMUNE, tf_feign_death_speed_duration.GetFloat() );
+	AddCond( TF_COND_SPEED_BOOST, tf_feign_death_speed_duration.GetFloat() );
+	AddCond( TF_COND_AFTERBURN_IMMUNE, tf_feign_death_speed_duration.GetFloat() );
 
 	SetFeignDeathReady( false );
 
