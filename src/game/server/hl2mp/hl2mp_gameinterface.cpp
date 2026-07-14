@@ -58,7 +58,7 @@ void CServerGameDLL::LevelInit_ParseAllEntities( const char *pMapEntities )
 	ConVar* cl_localnetworkbackdoor = cvar->FindVar( "cl_localnetworkbackdoor" );
 	if ( cl_localnetworkbackdoor )
 	{
-		cl_localnetworkbackdoor->SetValue( (gpGlobals->maxEntities) == 1 ? "0" : "1" );
+		cl_localnetworkbackdoor->SetValue( (gpGlobals->maxClients) == 1 ? "0" : "1" );
 	}
 #endif
 }
