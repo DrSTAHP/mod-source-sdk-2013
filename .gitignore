@@ -503,17 +503,9 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
-# Game executables
-/game/*.exe
-
-# Large assets
-*.mp3
-*.wav 
-*.vtf
-*.vvd 
-*.bsp
-*.nav
-*.ain  
-*.mdl
-*.vtx
-*.vcd
+# Anything but DLLs and EXEs for build
+!game/**/*.dll
+!game/**/*.so
+!game/**/*.exe
+!game/thirdpartylegalnotices.txt
+game/**/*.*
