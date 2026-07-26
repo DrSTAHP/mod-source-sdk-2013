@@ -509,5 +509,8 @@ FodyWeavers.xsd
 !game/**/*.exe
 !game/thirdpartylegalnotices.txt
 game/**/*.*
+<<<<<<< Updated upstream
 
 
+=======
+>>>>>>> Stashed changes
