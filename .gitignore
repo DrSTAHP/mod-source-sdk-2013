@@ -503,9 +503,5 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
-# Anything but DLLs and EXEs for build
-!game/**/*.dll
-!game/**/*.so
-!game/**/*.exe
-!game/thirdpartylegalnotices.txt
+# Anything in build
 game/**/*.*
