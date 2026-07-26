@@ -503,20 +503,10 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-# Game executables
-/game/*.exe
-=======
-=======
->>>>>>> Stashed changes
 # Anything but DLLs and EXEs for build
 !game/**/*.dll
 !game/**/*.so
 !game/**/*.exe
 !game/thirdpartylegalnotices.txt
 game/**/*.*
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+

@@ -12,6 +12,6 @@ $Include "$SRCDIR\game\server\server_dedicated_base.vpc"
 $Include "$SRCDIR\game\server\server_hl2mp_shared.vpc"
 
 
-$Project "Dedicated Server (HL2MP)"
+$Project "Server (HL2MP) (Dedicated)"
 {
 }
